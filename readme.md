@@ -65,6 +65,9 @@ the exam will quickly become very difficult to nearly impossible.
 - https://docs.oracle.com/en/java/javase/21/language/unnamed-patterns-and-variables.html
 ### Text Blocks
 - https://docs.oracle.com/en/java/javase/21/text-blocks/index.html
+### Serialization
+- https://www.oracle.com/technical-resources/articles/java/serializationapi.html
+- https://medium.com/technology-times/serialization-in-java-9b91296f04ee
 ### Java Platform Module System
 - https://www.oracle.com/corporate/features/understanding-java-9-modules.html
 - https://en.wikipedia.org/wiki/Java_Platform_Module_System
@@ -107,6 +110,10 @@ The same applies to multithreading. You must execute code to understand that a t
 scheduler at any time. Predicting exactly when a thread will run is absolutely impossible. Therefore, you must learn 
 what a thread-safe class looks like and what properties it must have. By this, I mean locks, especially ReentrantLocks 
 and synchronized blocks.
+
+You must be sure about how serialization and deserialization work. I know, I know, I also find it odd that this is 
+heavily emphasized in the exam. Just look at the custom methods for serializing and deserializing and understand 
+what transient means. Don't forget that the first non-serializable superclass must have a default constructor.
 
 ### Exception Handling
 Believe me when I tell you that you must know exactly when certain exceptions are suppressed in a try-catch or 
