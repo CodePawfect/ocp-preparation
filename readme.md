@@ -139,3 +139,108 @@ Based on my experience, you should place special emphasis on:
 - Inner classes and Local classes
 - Enums and complex enum fields. Consider that an Enum field can also be, for example, a BiConsumer<T,U>
 
+# Question Examples
+If you have no idea what a task in such an exam might look like, I'll give you a few examples:
+
+### Example 1
+```java
+class ExceptionOne extends Exception {
+    public ExceptionOne(String message) {
+        super(message);
+    }
+}
+
+class ExceptionTwo extends RuntimeException {
+    public ExceptionTwo(String message) {
+        super(message);
+    }
+}
+
+class Test implements AutoCloseable {
+    boolean someFlag;
+
+    public Test(boolean someFlag) {
+        this.someFlag = someFlag;
+        System.out.println("opened");
+    }
+
+    public void doSomething() throws ExceptionOne {
+       throw new ExceptionOne("Exception in doSomething()");
+    }
+
+    @Override
+    public void close() throws ExceptionTwo {
+        if(someFlag) {
+            throw new ExceptionTwo("Exception in close()");
+        }
+
+        System.out.println("closed");
+    }
+}
+
+public class ExceptionHandlingInTryWithResources {
+    public static void main(String[] args) {
+        try (Test test = new Test(true)) {
+            test.doSomething();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+```
+You need to know which exception is propagated and which is suppressed.
+
+### Example 2
+```java
+class SomeClass implements Serializable {
+    public String name;
+    public transient double price;
+    public static final double AVERAGE_PRICE = 7.99;
+
+    public SomeClass(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        price = AVERAGE_PRICE;
+    }
+}
+
+public class ReadObjectDemo {
+    public static void main(String[] args) {
+        SomeClass someClass = new SomeClass("Fizz", 1.99);
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("./someClass.txt"))) {
+            oos.writeObject(someClass);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./someClass.txt"))) {
+            SomeClass someClassRead = (SomeClass) ois.readObject();
+            System.out.println(someClassRead.name + " " + someClassRead.price + " " + someClassRead.AVERAGE_PRICE);
+        } catch(IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+You know which object state is deserialized? No? Then read through serialization again.
+
+### Example 3
+```java
+public static void main(String[] args) {
+        ArrayList<String> lt1 = new ArrayList<>(List.of("Fizz", "Buzz"));
+
+        String result = lt1.stream().parallel()
+                .flatMap(a -> lt1.stream().parallel().map(b -> a + b))
+                .reduce((a, b) -> a + b).get();
+
+        System.out.println(result);
+    }
+```
+Even if it's bad practice, you should know what happens when you execute such a statement.
+
+
