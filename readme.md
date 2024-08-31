@@ -243,4 +243,9 @@ public static void main(String[] args) {
 ```
 Even if it's bad practice, you should know what happens when you execute such a statement.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
+
+
 
