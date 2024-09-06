@@ -243,6 +243,33 @@ public static void main(String[] args) {
 ```
 Even if it's bad practice, you should know what happens when you execute such a statement.
 
+### Example 4
+```java
+        // Define a time zone that observes DST
+        ZoneId zoneId = ZoneId.of("America/New_York");
+
+        // Create a ZonedDateTime just before the DST transition
+        // 2024 DST begins on March 10 at 2:00 AM
+        ZonedDateTime dateTime1 = ZonedDateTime.of(2024, 3, 10, 1, 30, 0, 0, zoneId);
+        ZonedDateTime dateTime2 = dateTime1;
+
+        // Add a period of 1 day to dateTime1
+        ZonedDateTime dateTime1AfterPeriod = dateTime1.plus(Period.ofDays(1));
+
+        // Add a duration of 24 hours to dateTime2
+        ZonedDateTime dateTime2AfterDuration = dateTime2.plus(Duration.ofHours(24));
+
+        // Compare the resulting offsets
+        boolean sameOffset = dateTime1AfterPeriod.getOffset().equals(dateTime2AfterDuration.getOffset());
+        
+        System.out.println("Original DateTime: " + dateTime1); // 2024-03-10T01:30-05:00[America/New_York]
+        System.out.println("After adding Period of 1 day: " + dateTime1AfterPeriod); // 2024-03-11T01:30-04:00[America/New_York]
+        System.out.println("After adding Duration of 24 hours: " + dateTime2AfterDuration); // 2024-03-11T02:30-04:00[America/New_York]
+        System.out.println("Do they have the same offset? " + sameOffset); // offset is the same
+```
+
+It's crucial to remember during the exam that java.time.Duration ignores daylight saving time (DST)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
