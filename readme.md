@@ -17,6 +17,7 @@
 - [Hands-on Practice](#hands-on-practice)
 - [Pre-Exam Checklist](#pre-exam-checklist)
 - [Personal Experience](#personal-experience)
+- [Question Examples](#question-examples)
 
 # Exam Differences
 The OCP 21 has not only changed compared to OCP 17 and OCP 11 in terms of new topics, but Oracle has also significantly
