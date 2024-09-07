@@ -100,18 +100,20 @@ white, and to familiarize yourself with the type of questions. <br>
 I found [Enthuware](https://enthuware.com/) to be the best.
 
 # Hands-on Practice
-### Multi-Threading
+### Streams
 I recommend the following, which I did myself: In my development environment, I tried out all possible variants of 
 streams, especially those with downstream collectors and parallel streams. It's important to understand how a result 
 can change once a stream is executed in parallel. It may sound a bit excessive, but it's best if you know the parameter 
 lists of the individual method calls, such as .collect(), by heart, as the creators of the OCP exam repeatedly try to 
 trick you.
 
+### Multi-Threading
 The same applies to multithreading. You must execute code to understand that a thread can be interrupted by the OS 
 scheduler at any time. Predicting exactly when a thread will run is absolutely impossible. Therefore, you must learn 
 what a thread-safe class looks like and what properties it must have. By this, I mean locks, especially ReentrantLocks 
 and synchronized blocks.
 
+### Serialization
 You must be sure about how serialization and deserialization work. I know, I know, I also find it odd that this is 
 heavily emphasized in the exam. Just look at the custom methods for serializing and deserializing and understand 
 what transient means. Don't forget that the first non-serializable superclass must have a default constructor.
