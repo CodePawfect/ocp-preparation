@@ -27,6 +27,8 @@ time-consuming. I remember that after reaching the end of the test, I looked at 
 I wasn't sure about the answer. I analyzed each given choice and tested which one corresponded to the question. The
 choices were so complex that this single question cost me almost 10 minutes.
 
+I have also written a medium blog about my experience: [medium](https://medium.com/@alexmitdembart/not-stressed-enough-become-an-oracle-certified-professional-java-developer-a4bc893e685a)
+
 # Recommended Reading
 - [OCP Oracle Certified Professional Java SE 21 Developer Study Guide](https://www.amazon.de/Oracle-Certified-Professional-Java-Developer/dp/1394286619)
 
